@@ -1,3 +1,12 @@
+/*Protei_010_control.ino, 
+https://github.com/gabriella/Protei_010.git
+code for Protei_010 arduino control through TGY tx
+through 2 motor controllers: http://www.pololu.com/catalog/product/1376
+and
+two Brush DC geared motors:http://www.pololu.com/catalog/product/1577
+*/
+
+
 #include <Servo.h>
 #include <Metro.h> //Include Metro library
 Servo servo1;
