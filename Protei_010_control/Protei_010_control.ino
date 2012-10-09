@@ -54,7 +54,7 @@ void setup()
   Serial.begin(19200);
   Serial.println("Ready");
    pinMode(ledPower, OUTPUT);
-  analogWrite(ledPower, 255);
+digitalWrite(ledPower, HIGH);
 
   pinMode(OUTPUT_1,OUTPUT);
   pinMode(OUTPUT_2,OUTPUT);
