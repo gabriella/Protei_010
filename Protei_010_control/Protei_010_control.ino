@@ -67,24 +67,40 @@ void setup()
 void loop()
 {
   Channel2Value = pulseIn (RX1, HIGH, 20000); //read RC channel 2
-  Serial.print("Initial Throttle: ");
-  Serial.print (InitialThrottle);
-  Serial.print("    ");
-  Serial.print("Channel 2: ");
+//  Serial.print("Initial Throttle: ");
+//  Serial.print (InitialThrottle);
+//  Serial.print("    ");
+//  Serial.print("Channel 2: ");
+  
+    Channel1Value = pulseIn (RX3, HIGH, 20000); //read RC channel 2
+//  Serial.print("Initial Steer: ");
+//  Serial.print (InitialSteer);
+//  Serial.print("    ");
+//  Serial.print("Channel 1: ");
+       Serial.print("   motor_body :    ");
 
-  if(Channel2Value==0){
+  motorBody();
+   Serial.print("    motor_sail :    ");
+
+  motorSail();
+   Serial.println("");
+
+}
+void motorBody(){
+    if(Channel2Value==0){
     digitalWrite(OUTPUT_1, LOW);
-    Serial.println(Channel2Value);
+    Serial.print(Channel2Value);
+    Serial.print("     no signal   ");
   }
   else{
-    Channel2Value = map(Channel2Value,1020,1875, 0,255);
-    Serial.println(Channel2Value);
-    if(Channel2Value<=100){
+    int motor_body = map(Channel2Value,1020,1875, 0,255);
+    Serial.print(motor_body);
+    if(motor_body<=100){
       digitalWrite(DIR_PIN_1, LOW);
       Serial.print("     backwards     ");
       analogWrite(OUTPUT_1, map(RX1, 110,0,0,255));
     }
-    else if(Channel2Value>=150){
+    else if(motor_body>=150){
       digitalWrite(DIR_PIN_1, HIGH);
       Serial.print("     forwards    ");
       analogWrite(OUTPUT_1, map(RX1, 150,255,0,255));
@@ -93,9 +109,33 @@ void loop()
       Serial.print("     STOP    ");
       digitalWrite(OUTPUT_1, LOW);
     } 
-  }   
+  }
 }
-
+void motorSail(){
+    if(Channel1Value==0){
+    digitalWrite(OUTPUT_2, LOW);
+    Serial.print(Channel1Value);
+    Serial.print("   no signal   ");
+  }
+  else{
+    int motor_sail = map(Channel1Value,1020,1875, 0,255);
+    Serial.print(motor_sail);
+    if(motor_sail<=100){
+      digitalWrite(DIR_PIN_2, LOW);
+      Serial.print("     backwards     ");
+      analogWrite(OUTPUT_2, map(RX3, 110,0,0,255));
+    }
+    else if(motor_sail>=150){
+      digitalWrite(DIR_PIN_2, HIGH);
+      Serial.print("     forwards    ");
+      analogWrite(OUTPUT_2, map(RX3, 150,255,0,255));
+    }
+    else{
+      Serial.print("     STOP    ");
+      digitalWrite(OUTPUT_2, LOW);
+    } 
+  }
+}
 
 
 
