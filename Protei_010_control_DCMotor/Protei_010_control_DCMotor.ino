@@ -84,7 +84,7 @@ void loop()
   Serial.print("Channel 2: ");
 
   if(Channel2Value==0){
-    servo1.write(90);
+    digitalWrite(OUTPUT_1, LOW);
     Serial.println(Channel2Value);
   }
   else{
@@ -94,21 +94,16 @@ void loop()
       digitalWrite(DIR_PIN_1, LOW);
       analogWrite(OUTPUT_1, map(PD5, 120,0,0,255));
     }
-    else if(Channel2Val>=150){
+    else if(Channel2Value>=150){
      digitalWrite(DIR_PIN_1, HIGH);
     analogWrite(OUTPUT_1, map(PD5, 150,255,0,255));
     }
    else{
     digitalWrite(OUTPUT_1, LOW);
    } 
-    }
-    
-    
-    
-    servo1.write(Channel2Value); 
-   
+    }   
   }
-}
+
 
 
 
