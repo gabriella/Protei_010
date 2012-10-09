@@ -89,12 +89,12 @@ void loop()
 
   Channel2Value = pulseIn (PD6, HIGH, 20000); //read RC channel 2
 
-//  Serial.print("Initial Throttle: ");
-//  Serial.print (InitialThrottle);
-//  Serial.println("");
-//  Serial.print("Channel 2: ");
-//  Serial.print (Channel2Value);
-//  Serial.println("");
+Serial.print("Initial Throttle: ");
+Serial.print (InitialThrottle);
+ Serial.print("    ");
+Serial.print("Channel 2: ");
+
+
 
  if(Channel2Value==0){
     servo1.write(90);
