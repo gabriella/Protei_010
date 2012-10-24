@@ -37,7 +37,7 @@ const int OUTPUT_1 = 11; // Analog output pin that the Motor1 pwm pin is attache
 const int DIR_PIN_1=13; //digital output for logic direction pin motor 1
 const int OUTPUT_2= 10; // Analog output pin that the MOTOR2 pwm pin is attached to
 const int DIR_PIN_2 = 12;//digitaloutput for logic direction pin motor2
-const int ledPower = 7;
+const int ledPower = 8;
 
 
 void setup()
@@ -137,7 +137,8 @@ void motorSail(){
   }
 }
 
-
+//set the limit
+//set the speed control, it doesn't seem to be working. 
 
 
 
