@@ -7,12 +7,6 @@
  */
 
 
-//#include <Servo.h>
-//#include <Metro.h> //Include Metro library
-//Servo servo1;
-//Servo servo2;
-//Metro servo = Metro(250); 
-
 unsigned long counter = 0;
 unsigned long Channel1Value;
 unsigned long Channel2Value;
@@ -29,8 +23,8 @@ int Thrust;
 int RightMotor;
 int LeftMotor;
 
-const int RX3= 14;
-const int RX1=15;
+const int RX3= 16;
+const int RX1=14;
 
 //import motor library
 #include <MOTOR.h>
