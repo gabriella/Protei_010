@@ -1,7 +1,7 @@
 /*Protei_010_control.ino, 
  https://github.com/gabriella/Protei_010.git
- code for Protei_010 arduino control through TGY tx
- through 2 motor controllers: http://www.pololu.com/catalog/product/1376
+ code for Protei_010 arduino control through TGY 6ch tx/rx
+ through motor controller : http://www.elechouse.com/elechouse/index.php?main_page=product_info&cPath=100_146&products_id=2179
  and
  two Brush DC geared motors:http://www.pololu.com/catalog/product/1577
  */
@@ -59,71 +59,77 @@ void loop()
   Channel1Value = pulseIn (RX3, HIGH, 20000); //read RC channel 2
   Serial.print("   motor_body :    ");
 
- motorBody();
+  motorBody();
   Serial.print("    motor_sail :    ");
 
   motorSail();
   Serial.println("");
-
 }
 
 void motorBody(){
   if(Channel2Value==0){
- motor.close(B);
+    motor.close(B);
     Serial.print(Channel2Value);
     Serial.print("     no signal   ");
   }
   else{
-    int motor_body = map(Channel2Value,1020,1875, 0,255);
-    Serial.print(motor_body);
+    int motor_body = map(Channel2Value,1100,1800, 0,255);
+    Serial.print(constrain(motor_body,0,255));
     if(motor_body<=100){
       Serial.print("     backwards     ");
       motor_body= map(motor_body, 110,0,0,255);
-           motor.set(B, motor_body, REVERSE);
+      motor_body = constrain(motor_body, 0,255);
+      motor.set(B, motor_body, REVERSE);
 
     }
     else if(motor_body>=150){
-    
+
       Serial.print("     forwards    ");
       motor_body= map(motor_body, 150,255,0,255);
-                 motor.set(B, motor_body, FORWARD);
+      motor_body = constrain(motor_body, 0,255);
+
+      motor.set(B, motor_body, FORWARD);
 
     }
     else{
       Serial.print("     STOP    ");
-    motor.close(B);
+      motor.close(B);
     } 
   }
 }
 
 void motorSail(){
   if(Channel1Value==0){
- motor.close(A);
+    motor.close(A);
     Serial.print(Channel1Value);
     Serial.print("   no signal   ");
   }
   else{
-    int motor_sail = map(Channel1Value,1020,1875, 0,255);
-    Serial.print(motor_sail);
+    int motor_sail = map(Channel1Value,1100,1800, 0,255);
+    Serial.print(constrain(motor_sail,0,255));
     if(motor_sail<=100){
       Serial.print("     backwards     ");
       motor_sail = map(motor_sail, 110,0,0,255);
-           motor.set(A, motor_sail, REVERSE);
+      motor_sail = constrain(motor_sail, 0,255);
+
+      motor.set(A, motor_sail, REVERSE);
 
     }
     else if(motor_sail>=150){
       Serial.print("     forwards    ");
-     motor_sail = map(motor_sail, 150,255,0,255);
-     motor.set(A, motor_sail, FORWARD);
+      motor_sail = map(motor_sail, 150,255,0,255);
+      motor_sail = constrain(motor_sail, 0,255);
+      motor.set(A, motor_sail, FORWARD);
     }
     else{
       Serial.print("     STOP    ");
-     motor.close(A);
+      motor.close(A);
     } 
   }
 }
 
-//set the limit
+
+
 
 
 
